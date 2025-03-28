@@ -4,9 +4,9 @@ import { CartAppComponent } from './components/cart-app.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, CartAppComponent],
-  templateUrl: './app.component.html',
-  
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = '3-cart-app';

@@ -1,101 +1,84 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { CatalogoComponent } from './catalogo/catalogo.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { CartItem } from '../models/cartItem';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { SharingDataService } from '../services/sharing-data.service';
-
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { ItemsState } from '../store/items.reducer';
+import { add, remove, total } from '../store/items.actions';
 
 @Component({
   selector: 'cart-app',
-  imports: [RouterOutlet,CatalogoComponent ,NavbarComponent],
-  templateUrl: './cart-app.component.html',
+  standalone: true,
+  imports: [CatalogComponent, NavbarComponent, RouterOutlet],
+  templateUrl: './cart-app.component.html'
 })
 export class CartAppComponent implements OnInit {
+
   items: CartItem[] = [];
-  total: number = 0;
 
   constructor(
+    private store: Store<{ items: ItemsState }>,
     private router: Router,
-    private sharingDataService:SharingDataService,
-    private service: ProductService) {}
+    private sharingDataService: SharingDataService) {
+    this.store.select('items').subscribe(state => {
+      this.items = state.items;
+      this.saveSession();
+    });
+  }
 
   ngOnInit(): void {
-    this.items = JSON.parse(sessionStorage.getItem('cart') || '[]');
-    this.calculateTotal();
+    this.store.dispatch(total());
     this.onDeleteCart();
     this.onAddCart();
   }
 
-  onAddCart() {
+  onAddCart(): void {
     this.sharingDataService.productEventEmitter.subscribe(product => {
 
-      const hasItem = this.items.find((item) => item.product.id === product.id);
-  
-      if (hasItem) {
-        this.items = this.items.map((item) => {
-          if (item.product.id === product.id) {
-            item.quantity++;
-          }
-          return item;
-        });
-      } else {
-        this.items = [...this.items, { product: { ...product }, quantity: 1 }];
-      }
-  
-      this.calculateTotal();
-      this.saveSession();
-      this.router.navigate(['/cart'], {state:{items:this.items, total:this.total}});
+      this.store.dispatch(add({ product }));
+      this.store.dispatch(total());
+
+      this.router.navigate(['/cart']);
 
       Swal.fire({
-        title: "Corro de compras",
-        text: "nuevo producto agregado al carrito",
-        icon: "success",
+        title: "Shopping Cart",
+        text: "Nuevo producto agregado al carro!",
+        icon: "success"
       });
-
     });
   }
 
   onDeleteCart(): void {
-    this.sharingDataService.idProductEventEmitter.subscribe((id: number) => {
+    this.sharingDataService.idProductEventEmitter.subscribe(id => {
+      console.log(id + ' se ha ejecutado el evento idProductEventEmitter')
+
       Swal.fire({
-        title: "Estas seguro?",
-        text: "No podras revertir esta accion!",
+        title: "Esta seguro que desea eliminar?",
+        text: "Cuidado el item se eliminara del carro de compras!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, borrar!",
+        confirmButtonText: "Si, eliminar!"
       }).then((result) => {
         if (result.isConfirmed) {
-          this.items = this.items.filter((item) => item.product.id !== id);
-          if (this.items.length == 0) {
-            sessionStorage.removeItem('cart');
-          }
-          this.calculateTotal();
-          this.saveSession();
 
-          this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
-            this.router.navigate(['/cart'], {state:{items:this.items, total:this.total}});
-          });
+          this.store.dispatch(remove({ id }));
+          this.store.dispatch(total());
+
+          this.router.navigate(['/cart']);
+
           Swal.fire({
-            title: "Borrado!",
-            text: "Tu producto ha sido eliminado.",
-            icon: "success",
+            title: "Eliminado!",
+            text: "Se ha eliminado el item del carrito de compras.",
+            icon: "success"
           });
         }
       });
-    });
-  }
-
-  calculateTotal(): void {
-    this.total = this.items.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
+    })
   }
 
   saveSession(): void {
