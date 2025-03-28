@@ -44,7 +44,7 @@ export class CartAppComponent implements OnInit {
       this.router.navigate(['/cart']);
 
       Swal.fire({
-        title: "Shopping Cart",
+        title: "Carro de compras",
         text: "Nuevo producto agregado al carro!",
         icon: "success"
       });
@@ -53,7 +53,7 @@ export class CartAppComponent implements OnInit {
 
   onDeleteCart(): void {
     this.sharingDataService.idProductEventEmitter.subscribe(id => {
-      console.log(id + ' se ha ejecutado el evento idProductEventEmitter')
+      // console.log(id + ' se ha ejecutado el evento idProductEventEmitter')
 
       Swal.fire({
         title: "Esta seguro que desea eliminar?",
