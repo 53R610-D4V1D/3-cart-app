@@ -1,3 +1,11 @@
+## 🎥 Video Demostración - Carrito Angular + Redux
+<a href="https://www.youtube.com/watch?v=ccEx0ti5pVA" target="_blank">
+  <img src="https://img.youtube.com/vi/ccEx0ti5pVA/maxresdefault.jpg" 
+       alt="Video Tutorial - Carrito de Compras Angular" 
+       width="600" 
+       style="border-radius: 8px; border: 1px solid #ddd;">
+</a>
+
 # Carrito de Compras en Angular con Redux
 
 <img src="src/assets/img/1_catalog.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
@@ -6,13 +14,6 @@
 <img src="src/assets/img/3_cartTable.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
 <img src="src/assets/img/4_cartModalDelete.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
 
-## 🎥 Video Demostración - Carrito Angular + Redux
-<a href="https://www.youtube.com/watch?v=ccEx0ti5pVA" target="_blank">
-  <img src="https://img.youtube.com/vi/ccEx0ti5pVA/maxresdefault.jpg" 
-       alt="Video Tutorial - Carrito de Compras Angular" 
-       width="600" 
-       style="border-radius: 8px; border: 1px solid #ddd;">
-</a>
 
 ## Tabla de Contenidos
 - [Descripción](#descripción)
@@ -54,7 +55,7 @@ ng serve
 # 4. Abrir en navegador
 http://localhost:4200
 
-Estructura del Proyecto
+#Estructura del Proyecto
 src/
 ├── app/
 │   ├── components/       # Componentes reutilizables
