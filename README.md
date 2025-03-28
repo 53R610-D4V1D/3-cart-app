@@ -1,27 +1,69 @@
-# 3CartApp
+# Carrito de Compras en Angular con Redux
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
+<img src="src/assets/img/1_catalog.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
+<img src="src/assets/img/2_cartMolda.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
+<br>
+<img src="src/assets/img/3_cartTable.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
+<img src="src/assets/img/4_cartModalDelete.png" alt="Preview de la aplicación" width="400" style="border: 1px solid #eee; border-radius: 8px"/>
 
-## Development server
+## 🎥 Video Demostración - Carrito Angular + Redux
+<a href="https://www.youtube.com/watch?v=ccEx0ti5pVA" target="_blank">
+  <img src="https://img.youtube.com/vi/ccEx0ti5pVA/maxresdefault.jpg" 
+       alt="Video Tutorial - Carrito de Compras Angular" 
+       width="600" 
+       style="border-radius: 8px; border: 1px solid #ddd;">
+</a>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tabla de Contenidos
+- [Descripción](#descripción)
+- [Características](#características)
+- [Tecnologías](#tecnologías)
+- [Instalación](#instalación)
 
-## Code scaffolding
+## Descripción
+Aplicación de carrito de compras desarrollada en Angular con TypeScript y Redux (@ngrx/store) para gestión de estado global, implementando buenas prácticas de desarrollo.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Características
+- 🛒 Gestión completa de carrito (añadir/eliminar/actualizar cantidades)
+- 📱 Diseño responsive (tablet/desktop)
+- 🔄 Estado global con Redux
+- 🧩 Componentes reutilizables
+- ✅ Validación de datos de la tabla
 
-## Build
+## Tecnologías
+| Tecnología | Uso |
+|------------|-----|
+| Angular | Framework principal |
+| TypeScript | Tipado estático |
+| Redux (@ngrx/store) | Gestión de estado |
+| RxJS | Programación reactiva |
+| HTML5/CSS3 | Maquetación |
+| Bootstrap  | Estilos |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalación
+```bash
+# 1. Clonar repositorio
+git clone https://github.com/53R610-D4V1D/3-cart-app
 
-## Running unit tests
+# 2. Instalar dependencias
+npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# 3. Iniciar servidor de desarrollo
+ng serve
 
-## Running end-to-end tests
+# 4. Abrir en navegador
+http://localhost:4200
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Estructura del Proyecto
+src/
+├── app/
+│   ├── components/       # Componentes reutilizables
+│   ├── store/            # Configuración Redux
+│   │   ├── actions/
+│   │   ├── reducers/
+│   │   └── selectors/
+│   ├── models/           # Interfaces TypeScript
+│   └── services/         # Lógica de negocio
+├── assets/               # Recursos estáticos
+└── environments/         # Configuraciones
+```
