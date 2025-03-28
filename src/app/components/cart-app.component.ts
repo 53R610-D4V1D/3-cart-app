@@ -12,7 +12,7 @@ import { add, remove, total } from '../store/items.actions';
 @Component({
   selector: 'cart-app',
   standalone: true,
-  imports: [CatalogComponent, NavbarComponent, RouterOutlet],
+  imports: [NavbarComponent, RouterOutlet],
   templateUrl: './cart-app.component.html'
 })
 export class CartAppComponent implements OnInit {
